@@ -23,6 +23,14 @@ fun PluginDependenciesSpec.navigationSafeArgs(): PluginDependencySpec =
 fun PluginDependenciesSpec.daggerHilt(): PluginDependencySpec =
     id("dagger.hilt.android.plugin")
 
+fun PluginDependenciesSpec.javaLibrary(): PluginDependencySpec =
+    id("java-library")
+
+fun PluginDependenciesSpec.kotlin(): PluginDependencySpec =
+    id("kotlin")
+
+
+/* static analysis */
 fun PluginDependenciesSpec.dependencyUpdates(): PluginDependencySpec =
     id("com.github.ben-manes.versions").version("0.39.0")
 

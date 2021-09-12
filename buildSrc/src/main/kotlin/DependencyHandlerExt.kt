@@ -1,44 +1,85 @@
-
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
-fun DependencyHandler.addCoreDependencies()  {
 
+val lifeCycleList = listOf(
+    Libs.Androidx.Lifecycle.viewModel,
+    Libs.Androidx.Lifecycle.viewModelSavedState,
+    Libs.Androidx.Lifecycle.commonJava8,
+)
+
+val ktxList = listOf(
+    Libs.Androidx.Ktx.collection,
+    Libs.Androidx.Ktx.core,
+    Libs.Androidx.Ktx.activity,
+    Libs.Androidx.Ktx.fragment,
+)
+
+val compilersList = listOf(
+    Libs.Glide.compiler,
+)
+
+val uiList = listOf(
+    Libs.Androidx.constraintLayout,
+    Libs.material,
+    Libs.Androidx.swipeRefreshLayout,
+    Libs.Androidx.appCompat,
+    Libs.Glide.glideCore
+)
+
+val androidTestList = listOf(
+    Libs.AndroidTestLibs.junit,
+    Libs.AndroidTestLibs.espresso
+)
+
+fun DependencyHandler.addCoreDependencies() {
+    addCommonDependencies()
+    uiList.forEach { implementation(it) }
+    ktxList.forEach { implementation(it) }
+    lifeCycleList.forEach { implementation(it) }
+    compilersList.forEach { kapt(it) }
+    addTestDependencies()
+    addAndroidTestDependencies()
+}
+
+fun DependencyHandler.addTestDependencies() {
+    testImplementation(Libs.TestLibs.junit)
+}
+
+fun DependencyHandler.addAndroidTestDependencies() =
+    androidTestList.forEach { androidTestImplementation(it) }
+
+
+fun DependencyHandler.addCommonDependencies() {
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Kotlin.reflection)
-    implementation(Libs.Androidx.constraintLayout)
-    implementation(Libs.material)
-    implementation(Libs.Androidx.swipeRefreshLayout)
-    implementation(Libs.Androidx.appCompat)
-
-    // ktx
-    implementation(Libs.Androidx.Ktx.collection)
-    implementation(Libs.Androidx.Ktx.core)
-    implementation(Libs.Androidx.Ktx.activity)
-    implementation(Libs.Androidx.Ktx.fragment)
-
-    //lifecycle
-    implementation(Libs.Androidx.Lifecycle.viewModel)
-    implementation(Libs.Androidx.Lifecycle.viewModelSavedState)
-    implementation(Libs.Androidx.Lifecycle.commonJava8)
-
-    //glide
-    implementation(Libs.Glide.glideCore)
-    kapt(Libs.Glide.compiler)
-
-    //timber
-    implementation(Libs.timber)
-
-    // // hilt
-    implementation(Libs.Hilt.android)
-    kapt(Libs.Hilt.compiler)
 
     implementation(Libs.Coroutines.coroutinesCore)
     implementation(Libs.Coroutines.android)
 
-    testImplementation(Libs.TestLibs.junit)
-    androidTestImplementation(Libs.AndroidTestLibs.junit)
-    androidTestImplementation(Libs.AndroidTestLibs.espresso)
+    implementation(Libs.Hilt.android)
+    kapt(Libs.Hilt.compiler)
+
+    implementation(Libs.timber)
+}
+
+
+
+fun DependencyHandler.addDataDependencies() {
+    implementation(Libs.Retrofit.retrofit)
+    implementation(Libs.Retrofit.moshi)
+    kapt(Libs.Retrofit.moshiCompiler)
+    implementation(Libs.Retrofit.moshiKotlin)
+    implementation(Libs.Retrofit.retrofitMoshiConverter)
+
+    implementation(Libs.Okhttp.okhttpCore)
+    implementation(Libs.Okhttp.loggingInterceptor)
+    implementation(Libs.CommonInterceptors.ok2curl)
+    debugImplementation(Libs.CommonInterceptors.Chucker.debug)
+
+    implementation(Libs.Room.roomKtx)
+    implementation(Libs.Room.runtime)
+    kapt(Libs.Room.compiler)
 }
 
 
