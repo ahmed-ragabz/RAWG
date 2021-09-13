@@ -126,12 +126,15 @@ object Libs {
 
     // region Retrofit
     object Retrofit {
-        private const val version = "2.9.0"
-        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
-        const val gsonConverter = "com.squareup.retrofit2:converter-gson:$version"
+        private const val retrofitVersion = "2.9.0"
+        private const val moshiVersion = "1.12.0"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        const val gsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:1.12.0"
-        const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:2.9.0"
+        const val moshi = "com.squareup.moshi:moshi:$moshiVersion"
+        const val moshiCompiler = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+        const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     }
     //endregion
 
@@ -251,5 +254,9 @@ object Libs {
     //endregion
 
     const val localization = "com.akexorcist:localization:1.2.2"
+
+    const val whatIf = "com.github.skydoves:whatif:1.1.0"
+
+    const val sandwich = "com.github.skydoves:sandwich:1.2.1"
 }
 
