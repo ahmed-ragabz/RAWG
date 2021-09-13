@@ -1,45 +1,29 @@
 package com.ragabz.rawg.data.datasource.local.entities
 
 
-import com.squareup.moshi.Json
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class GameEntity(
-    @Json(name = "added")
     val added: Int,
-    @Json(name = "added_by_status")
-    val addedByStatus: AddedByStatusEntity,
-    @Json(name = "background_image")
+//    val addedByStatus: AddedByStatusEntity,
     val backgroundImage: String,
-    @Json(name = "esrb_rating")
-    val esrbRating: EsrbRatingEntity,
-    @Json(name = "id")
+//    val esrbRating: EsrbRatingEntity,
+    @PrimaryKey
     val id: Int,
-    @Json(name = "metacritic")
     val metacritic: Int,
-    @Json(name = "name")
     val name: String,
-    @Json(name = "platforms")
-    val platforms: List<ParentPlatformEntity>,
-    @Json(name = "playtime")
+//    val platforms: List<ParentPlatformEntity>,
     val playtime: Int,
-    @Json(name = "rating")
     val rating: Int,
-    @Json(name = "rating_top")
     val ratingTop: Int,
-    @Json(name = "ratings")
-    val ratings: RatingsEntity,
-    @Json(name = "ratings_count")
+//    val ratings: RatingsEntity,
     val ratingsCount: Int,
-    @Json(name = "released")
     val released: String,
-    @Json(name = "reviews_text_count")
     val reviewsTextCount: String,
-    @Json(name = "slug")
     val slug: String,
-    @Json(name = "suggestions_count")
     val suggestionsCount: Int,
-    @Json(name = "tba")
     val tba: Boolean,
-    @Json(name = "updated")
     val updated: String
 )

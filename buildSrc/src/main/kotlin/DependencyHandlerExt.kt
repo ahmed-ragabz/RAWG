@@ -1,5 +1,6 @@
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.project
 
 
 val lifeCycleList = listOf(
@@ -24,7 +25,10 @@ val uiList = listOf(
     Libs.material,
     Libs.Androidx.swipeRefreshLayout,
     Libs.Androidx.appCompat,
-    Libs.Glide.glideCore
+    Libs.Glide.glideCore,
+    Libs.Androidx.Ktx.activity,
+    Libs.Androidx.Ktx.fragment,
+    Libs.Androidx.Ktx.core,
 )
 
 val androidTestList = listOf(
@@ -32,25 +36,25 @@ val androidTestList = listOf(
     Libs.AndroidTestLibs.espresso
 )
 
-fun DependencyHandler.addCoreDependencies() {
-    addCommonDependencies()
+fun DependencyHandler.coreDependencies() {
+    commonDependencies()
     uiList.forEach { implementation(it) }
     ktxList.forEach { implementation(it) }
     lifeCycleList.forEach { implementation(it) }
     compilersList.forEach { kapt(it) }
-    addTestDependencies()
-    addAndroidTestDependencies()
+    testDependencies()
+    androidTestDependencies()
 }
 
-fun DependencyHandler.addTestDependencies() {
+fun DependencyHandler.testDependencies() {
     testImplementation(Libs.TestLibs.junit)
 }
 
-fun DependencyHandler.addAndroidTestDependencies() =
+fun DependencyHandler.androidTestDependencies() =
     androidTestList.forEach { androidTestImplementation(it) }
 
 
-fun DependencyHandler.addCommonDependencies() {
+fun DependencyHandler.commonDependencies() {
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Kotlin.reflection)
 
@@ -60,17 +64,21 @@ fun DependencyHandler.addCommonDependencies() {
     implementation(Libs.Hilt.android)
     kapt(Libs.Hilt.compiler)
 
-    implementation(Libs.timber)
+
 }
 
 
+fun DependencyHandler.dataDependencies() {
+    /*modules*/
+    api(project(Modules.domain))
 
-fun DependencyHandler.addDataDependencies() {
+    /*libs*/
     implementation(Libs.Retrofit.retrofit)
     implementation(Libs.Retrofit.moshi)
     kapt(Libs.Retrofit.moshiCompiler)
     implementation(Libs.Retrofit.moshiKotlin)
     implementation(Libs.Retrofit.retrofitMoshiConverter)
+    implementation(Libs.sandwich)
 
     implementation(Libs.Okhttp.okhttpCore)
     implementation(Libs.Okhttp.loggingInterceptor)
@@ -80,6 +88,20 @@ fun DependencyHandler.addDataDependencies() {
     implementation(Libs.Room.roomKtx)
     implementation(Libs.Room.runtime)
     kapt(Libs.Room.compiler)
+}
+
+fun DependencyHandler.appDependencies() {
+    /*modules*/
+    api(project(Modules.core))
+    api(project(Modules.data))
+    api(project(Modules.domain))
+
+    testDependencies()
+    androidTestDependencies()
+    commonDependencies()
+    uiList.forEach { implementation(it) }
+    lifeCycleList.forEach { implementation(it) }
+    implementation(Libs.Androidx.appStartup)
 }
 
 

@@ -17,6 +17,8 @@ android {
     }
 }
 dependencies {
-    addCoreDependencies()
+    coreDependencies()
+    implementation(Libs.timber)
+    implementation(Libs.whatIf)
 }
 

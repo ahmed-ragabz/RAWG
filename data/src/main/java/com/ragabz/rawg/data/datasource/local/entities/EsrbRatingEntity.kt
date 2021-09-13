@@ -1,13 +1,12 @@
 package com.ragabz.rawg.data.datasource.local.entities
 
 
-import com.squareup.moshi.Json
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class EsrbRatingEntity(
-    @Json(name = "id")
-    val id: Int,
-    @Json(name = "name")
+    @PrimaryKey val id: Int,
     val name: String,
-    @Json(name = "slug")
     val slug: String
 )

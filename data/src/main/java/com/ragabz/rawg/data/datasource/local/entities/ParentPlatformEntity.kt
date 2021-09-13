@@ -1,13 +1,11 @@
 package com.ragabz.rawg.data.datasource.local.entities
 
+import androidx.room.Entity
 
-import com.squareup.moshi.Json
 
+@Entity
 data class ParentPlatformEntity(
-    @Json(name = "platform")
     val platform: PlatformEntity,
-    @Json(name = "released_at")
     val releasedAt: String,
-    @Json(name = "requirements")
     val requirements: RequirementsEntity
 )

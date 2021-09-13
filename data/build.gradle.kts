@@ -10,11 +10,27 @@ android {
         minSdk = ProjectConfiguration.MIN_SDK
         targetSdk = ProjectConfiguration.TARGET_SDK
     }
+
+    buildTypes {
+        getByName(configuration.BuildType.Debug){
+            isMinifyEnabled = configuration.DebugBuildType.isMinifyEnabled
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            buildConfigField("String","BASE_URL", configuration.DebugBuildType.baseUrl)
+        }
+        getByName(configuration.BuildType.Release){
+            isMinifyEnabled = configuration.ReleaseBuildType.isMinifyEnabled
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+
+            buildConfigField("String","BASE_URL", configuration.ReleaseBuildType.baseUrl)
+        }
+    }
 }
 
 dependencies {
-    addCommonDependencies()
-    addDataDependencies()
-    addAndroidTestDependencies()
-    addTestDependencies()
+    commonDependencies()
+    dataDependencies()
+    androidTestDependencies()
+    testDependencies()
+    implementation(Libs.timber)
+    implementation(Libs.whatIf)
 }

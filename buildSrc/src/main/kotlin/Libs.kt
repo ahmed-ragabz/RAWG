@@ -254,5 +254,9 @@ object Libs {
     //endregion
 
     const val localization = "com.akexorcist:localization:1.2.2"
+
+    const val whatIf = "com.github.skydoves:whatif:1.1.0"
+
+    const val sandwich = "com.github.skydoves:sandwich:1.2.1"
 }
 
