@@ -7,6 +7,9 @@ val lifeCycleList = listOf(
     Libs.Androidx.Lifecycle.viewModel,
     Libs.Androidx.Lifecycle.viewModelSavedState,
     Libs.Androidx.Lifecycle.commonJava8,
+    Libs.Androidx.Lifecycle.liveData,
+    Libs.Androidx.Lifecycle.runtime,
+    Libs.Androidx.Lifecycle.reactiveStreams,
 )
 
 val ktxList = listOf(
@@ -22,6 +25,7 @@ val compilersList = listOf(
 
 val uiList = listOf(
     Libs.Androidx.constraintLayout,
+    Libs.Androidx.coordinatorlayout,
     Libs.material,
     Libs.Androidx.swipeRefreshLayout,
     Libs.Androidx.appCompat,
@@ -29,11 +33,22 @@ val uiList = listOf(
     Libs.Androidx.Ktx.activity,
     Libs.Androidx.Ktx.fragment,
     Libs.Androidx.Ktx.core,
+    Libs.Navigation.fragmentKtx,
+    Libs.Navigation.uiKtx,
+    Libs.Navigation.runtimeKtx,
+    Libs.Navigation.navigationCompose,
+    Libs.Androidx.swipeRefreshLayout,
+    Libs.loadMoreWrapper
 )
 
 val androidTestList = listOf(
     Libs.AndroidTestLibs.junit,
     Libs.AndroidTestLibs.espresso
+)
+
+val room = listOf(
+    Libs.Room.roomKtx,
+    Libs.Room.runtime,
 )
 
 fun DependencyHandler.coreDependencies() {
@@ -64,7 +79,6 @@ fun DependencyHandler.commonDependencies() {
     implementation(Libs.Hilt.android)
     kapt(Libs.Hilt.compiler)
 
-
 }
 
 
@@ -73,37 +87,21 @@ fun DependencyHandler.dataDependencies() {
     api(project(Modules.domain))
 
     /*libs*/
-    implementation(Libs.Retrofit.retrofit)
-    implementation(Libs.Retrofit.moshi)
-    kapt(Libs.Retrofit.moshiCompiler)
-    implementation(Libs.Retrofit.moshiKotlin)
-    implementation(Libs.Retrofit.retrofitMoshiConverter)
-    implementation(Libs.sandwich)
+    api(Libs.Retrofit.retrofit)
+    kapt(Libs.Retrofit.moshiCodeGen)
+    api(Libs.Retrofit.moshiKotlin)
+    api(Libs.Retrofit.retrofitMoshiConverter)
+    api(Libs.sandwich)
 
-    implementation(Libs.Okhttp.okhttpCore)
-    implementation(Libs.Okhttp.loggingInterceptor)
-    implementation(Libs.CommonInterceptors.ok2curl)
+    api(Libs.Okhttp.okhttpCore)
+    api(Libs.Okhttp.loggingInterceptor)
+    api(Libs.CommonInterceptors.ok2curl)
     debugImplementation(Libs.CommonInterceptors.Chucker.debug)
 
-    implementation(Libs.Room.roomKtx)
-    implementation(Libs.Room.runtime)
+    api(Libs.Room.roomKtx)
+    api(Libs.Room.runtime)
     kapt(Libs.Room.compiler)
 }
-
-fun DependencyHandler.appDependencies() {
-    /*modules*/
-    api(project(Modules.core))
-    api(project(Modules.data))
-    api(project(Modules.domain))
-
-    testDependencies()
-    androidTestDependencies()
-    commonDependencies()
-    uiList.forEach { implementation(it) }
-    lifeCycleList.forEach { implementation(it) }
-    implementation(Libs.Androidx.appStartup)
-}
-
 
 /*
  * These extensions mimic the extensions that are generated on the fly by Gradle.

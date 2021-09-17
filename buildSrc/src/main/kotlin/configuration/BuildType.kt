@@ -21,7 +21,7 @@ object DebugBuildType : BuildType {
     const val versionNameSuffix = "-DEBUG"
 
     override val baseUrl: String
-        get() = "\"http://openlibrary.org/api/\""
+        get() = "\"https://api.rawg.io/api/\""
 }
 
 object ReleaseBuildType : BuildType {
@@ -29,5 +29,5 @@ object ReleaseBuildType : BuildType {
     override val isTestCoverageEnabled: Boolean = false
 
     override val baseUrl: String
-        get() = "\"http://openlibrary.org/api/\""
+        get() = "\"https://api.rawg.io/api/\""
 }

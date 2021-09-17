@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:minHeight="50dp"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="300dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateOnly="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="50dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+        <TextView
+            android:id="@+id/textView_game_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Fortinite"
+            android:textColor="@color/black_overlay"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textView_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="July 25,2017"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/textView_game_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_game_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_want"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Want"
+            android:textColor="@color/white"
+            android:theme="@style/PrimaryColoredButton"
+            app:layout_constraintEnd_toStartOf="@+id/button_played"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_release_date" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_played"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Played"
+            android:theme="@style/PrimaryColoredButton"
+            app:layout_constraintBottom_toBottomOf="@+id/button_want"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_want"
+            app:layout_constraintTop_toTopOf="@+id/button_want" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:numStars="1"
+            android:progressTint="@color/yellow"
+            android:rating="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_game_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_game_title" />
+
+        <TextView
+            android:id="@+id/textView_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/md_font"
+            app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+        <TextView
+            android:id="@+id/textView_suggestion_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="12"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Recommended"
+            android:textSize="@dimen/sm_font"
+            app:layout_constraintBottom_toTopOf="@+id/textView_playtime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:text="Rating"
+            android:textSize="@dimen/sm_font"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_want" />
+
+        <TextView
+            android:id="@+id/textView_rating_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="5.5"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Play Time"
+            android:textSize="@dimen/sm_font"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView_playtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="12.2"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView_review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="54"
+            android:textColor="@color/black_overlay"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Reviews"
+            android:textSize="@dimen/sm_font"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView_reddit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/title_reddit_name"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView_release_date"
+            app:layout_constraintTop_toBottomOf="@+id/textView_suggestion_count" />
+
+        <TextView
+            android:id="@+id/textView_reddit_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:maxLines="2"
+            android:text="r/game"
+
+            android:textSize="@dimen/md_font"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_reddit_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_reddit_title"
+            app:layout_constraintTop_toTopOf="@+id/textView_reddit_title" />
+        <!--        reddit description -->
+        <TextView
+            android:id="@+id/textView_reddit_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_reddit_description"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView_reddit_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_reddit_title" />
+
+        <TextView
+            android:id="@+id/textView_reddit_description_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="@dimen/md_font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView_reddit_description_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_reddit_description_title" />
+
+        <!--   end reddit      -->
+        <TextView
+            android:id="@+id/textView_tba_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_tba"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView_reddit_description_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_reddit_description_value" />
+
+        <TextView
+            android:id="@+id/textView_tba_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/title_tba"
+            android:textSize="@dimen/md_font"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textView_tba_title"
+            app:layout_constraintStart_toEndOf="@+id/textView_tba_title"
+            app:layout_constraintTop_toTopOf="@+id/textView_tba_title" />
+
+        <TextView
+            android:id="@+id/textView_screenShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_screenshots"
+            android:textSize="@dimen/md_font"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView_tba_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_tba_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_screenShots"
+            android:layout_width="0dp"
+            android:layout_height="210dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView_screenShots"
+            app:layout_constraintTop_toBottomOf="@+id/textView_screenShots"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_screenshot" />
+
+        <TextView
+            android:id="@+id/textView_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_description"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView_screenShots"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_screenShots" />
+
+        <TextView
+            android:id="@+id/textView_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update. \r\nSimultaneous storytelling from three unique perspectives: \r\nFollow Michael, ex-criminal living his life of leisure away from the past, Franklin, a kid that seeks the better future, and Trevor, the exact past Michael is trying to run away from. \r\nGTA Online will provide a lot of additional challenge even for the experienced players, coming fresh from the story mode. Now you will have other players around that can help you just as likely as ruin your mission. Every GTA mechanic up to date can be experienced by players through the unique customizable character, and community content paired with the leveling system tends to keep everyone busy and engaged."
+            android:textSize="@dimen/md_font"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView_screenShots"
+            app:layout_constraintStart_toStartOf="@+id/textView_description_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_description_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

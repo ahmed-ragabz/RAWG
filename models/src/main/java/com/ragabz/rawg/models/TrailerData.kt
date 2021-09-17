@@ -2,10 +2,12 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class TrailerData(
-    @Json(name = "max")
+    @field:Json(name = "max")
     val max: String,
-    @Json(name = "480")
+    @field:Json(name = "480")
     val x480: String
 )

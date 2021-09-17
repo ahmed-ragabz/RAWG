@@ -10,9 +10,11 @@ dependencyResolutionManagement {
         maven { url = uri("https://jitpack.io") }
     }
 }
+
+
 rootProject.name = "RAWG"
-include(":app"
-        , ":core"
-        , ":domain"
-        , ":data")
-include ':models'
+
+
+include(
+    ":app", ":core", ":domain", ":data", ":models"
+)

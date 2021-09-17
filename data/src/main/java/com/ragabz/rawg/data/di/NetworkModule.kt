@@ -1,10 +1,15 @@
-package com.ragabz.data.di
+package com.ragabz.rawg.data.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.moczul.ok2curl.CurlInterceptor
 import com.ragabz.rawg.data.BuildConfig
+import com.ragabz.rawg.data.datasource.remote.api.AuthInterceptor
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +29,7 @@ private const val CHUCKER_MAX_CONTENT = 250000L
 
 @InstallIn(SingletonComponent::class)
 @Module
-class NetworkModule {
+object NetworkModule {
 
     /**
      * provide HttploggingInterceptor
@@ -43,14 +48,22 @@ class NetworkModule {
         return CurlInterceptor { message -> Timber.v("Ok2Curl $message") }
     }
 
+
+    @Singleton
+    @Provides
+    fun bindAuthInterceptor(): AuthInterceptor = AuthInterceptor()
+
     /**
      * provide OkHttpClient
      */
     @Provides
     @Singleton
     fun provideOkHttpClient(
+        authInterceptor: AuthInterceptor,
         loggingInterceptor: HttpLoggingInterceptor,
+
         chuckerInterceptor: ChuckerInterceptor,
+
         curlInterceptor: CurlInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder().apply {
@@ -59,6 +72,7 @@ class NetworkModule {
                 addInterceptor(chuckerInterceptor)
                 addInterceptor(loggingInterceptor)
             }
+            addInterceptor(authInterceptor)
             connectTimeout(TIME_OUT, TimeUnit.MINUTES)
             readTimeout(TIME_OUT, TimeUnit.MINUTES)
             writeTimeout(TIME_OUT, TimeUnit.MINUTES)
@@ -68,9 +82,22 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshiConverterFactory(): MoshiConverterFactory {
-        return MoshiConverterFactory.create()
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .setLenient()
+            .serializeNulls() // to allow sending null values
+            .create()
     }
+
+    @Provides
+    @Singleton
+    fun provideMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory {
+        return MoshiConverterFactory.create(moshi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     /**
      * provide retrofit
@@ -78,12 +105,11 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: OkHttpClient,
-        moshiConverterFactory: MoshiConverterFactory
+        okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
-            .addConverterFactory(moshiConverterFactory)
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()
     }

@@ -253,22 +253,6 @@ interface RawgApi {
         @Path("id") id: String
     ): RawgResponse<List<RedditPost>>
 
-//    /**
-//     * Get a list of visually similar games.
-//     */
-//    @GET("games/{id}/suggested")
-//    suspend fun getListOfVisualSimilarGames(
-//        @Path("id") id: String
-//    ): RawgApiResult<RawgData<List<GameSingle>>>
-//
-//    /**
-//     * Get streams on Twitch associated with the game .
-//     */
-//    @GET("games/{id}/twitch")
-//    suspend fun getTwitchStreams(
-//        @Path("id") id: String
-//    ): RawgApiResult<RawgData<List<TwitchStreams>>>
-
     /**
      * Get videos from YouTube associated with the game.
      */

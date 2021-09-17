@@ -2,6 +2,7 @@ plugins {
     androidLibrary()
     kotlinAndroid()
     kotlinKapt()
+    daggerHilt()
 }
 
 android {
@@ -12,25 +13,55 @@ android {
     }
 
     buildTypes {
-        getByName(configuration.BuildType.Debug){
+        getByName(configuration.BuildType.Debug) {
             isMinifyEnabled = configuration.DebugBuildType.isMinifyEnabled
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            buildConfigField("String","BASE_URL", configuration.DebugBuildType.baseUrl)
+            buildConfigField("String", "BASE_URL", configuration.DebugBuildType.baseUrl)
         }
-        getByName(configuration.BuildType.Release){
+        getByName(configuration.BuildType.Release) {
             isMinifyEnabled = configuration.ReleaseBuildType.isMinifyEnabled
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
 
-            buildConfigField("String","BASE_URL", configuration.ReleaseBuildType.baseUrl)
+            buildConfigField("String", "BASE_URL", configuration.ReleaseBuildType.baseUrl)
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
 dependencies {
+
+    /*modules*/
+    api(project(Modules.domain))
+
     commonDependencies()
-    dataDependencies()
     androidTestDependencies()
     testDependencies()
     implementation(Libs.timber)
-    implementation(Libs.whatIf)
+
+    /*libs*/
+    implementation(Libs.Retrofit.retrofit)
+    implementation(Libs.Retrofit.gsonConverter)
+    implementation(Libs.gson)
+    kapt(Libs.Retrofit.moshiCodeGen)
+    implementation(Libs.Retrofit.moshiKotlin)
+    implementation(Libs.Retrofit.retrofitMoshiConverter)
+    implementation(Libs.sandwich)
+
+    implementation(Libs.Okhttp.okhttpCore)
+    implementation(Libs.Okhttp.loggingInterceptor)
+    implementation(Libs.CommonInterceptors.ok2curl)
+    debugImplementation(Libs.CommonInterceptors.Chucker.debug)
+
+    room.forEach { implementation(it) }
+    kapt(Libs.Room.compiler)
+
 }

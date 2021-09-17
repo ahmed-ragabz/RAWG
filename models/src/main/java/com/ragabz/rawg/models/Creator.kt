@@ -2,28 +2,30 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Creator(
-    @Json(name = "description")
+    @field:Json(name = "description")
     val description: String,
-    @Json(name = "games_count")
+    @field:Json(name = "games_count")
     val gamesCount: Int,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int,
-    @Json(name = "image")
+    @field:Json(name = "image")
     val image: String,
-    @Json(name = "image_background")
+    @field:Json(name = "image_background")
     val imageBackground: String,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "rating")
-    val rating: String,
-    @Json(name = "rating_top")
+    @field:Json(name = "rating")
+    val rating: List<Ratings>,
+    @field:Json(name = "rating_top")
     val ratingTop: Int,
-    @Json(name = "reviews_count")
+    @field:Json(name = "reviews_count")
     val reviewsCount: Int,
-    @Json(name = "slug")
-    val slug: String,
-    @Json(name = "updated")
-    val updated: String
+    @field:Json(name = "slug")
+    val slug: String?,
+    @field:Json(name = "updated")
+    val updated: String?
 )

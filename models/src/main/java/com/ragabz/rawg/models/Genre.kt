@@ -2,16 +2,18 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Genre(
-    @Json(name = "games_count")
+    @field:Json(name = "games_count")
     val gamesCount: Int,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int,
-    @Json(name = "image_background")
+    @field:Json(name = "image_background")
     val imageBackground: String,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "slug")
+    @field:Json(name = "slug")
     val slug: String
 )

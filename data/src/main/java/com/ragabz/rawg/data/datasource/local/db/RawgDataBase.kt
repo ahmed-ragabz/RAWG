@@ -10,9 +10,7 @@ import com.ragabz.rawg.data.datasource.local.entities.GameEntity
 import java.util.concurrent.Executors
 
 @Database(
-    entities = arrayOf(
-        GameEntity::class,
-    ), version = 3, exportSchema = false
+    entities = [GameEntity::class], version = 1, exportSchema = true
 )
 abstract class RawgDataBase : RoomDatabase() {
 
@@ -22,8 +20,7 @@ abstract class RawgDataBase : RoomDatabase() {
         @Volatile
         private var INSTANCE: RawgDataBase? = null
 
-        fun instance(context: Context): RawgDataBase =
-            INSTANCE ?: synchronized(this) {
+        fun instance(context: Context): RawgDataBase = INSTANCE?: synchronized(this) {
                 INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
 

@@ -13,7 +13,7 @@ abstract class BaseVBActivity<VB : ViewBinding, VM : ViewModel>(
     private val viewBindingInflater: ActivityViewBindingInflater<VB>
 ) : AppCompatActivity() {
 
-    protected  abstract val viewModel: VM
+    protected abstract val viewModel: VM
 
     lateinit var binding: VB
 
@@ -21,9 +21,5 @@ abstract class BaseVBActivity<VB : ViewBinding, VM : ViewModel>(
         super.onCreate(savedInstanceState)
         binding = viewBindingInflater.invoke(layoutInflater)
         setContentView(binding.root)
-        // start call binding init
-        // onInitViewBinding()
     }
-
-    // abstract fun onInitViewBinding()
 }

@@ -4,19 +4,26 @@ import com.ragabz.core.deliverable.Result
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
-import timber.log.Timber
 
 fun <T> Response<T>.toFlow() = flow {
-    if (isSuccessful) {
-        Timber.i("asFlow() --> isSuccessful")
-        emit(Result.Success(body() as T))
-    } else {
-        Timber.i("asFlow() --> onError(): erroBody --> ${errorBody()} ")
-        Timber.i("asFlow() --> onError(): message --> ${message()} ")
-
-        emit(Result.Error(Exception(message())))
-    }
+    emit(
+        when (isSuccessful) {
+            true -> Result.Success(body() as T)
+            false -> Result.Error(Exception(message()))
+        }
+    )
 }.catch { e ->
-    Timber.e("catchError()--> error: ${e}")
     emit(Result.Error(Exception(e)))
 }
+
+fun <T> Response<T>.whenSuccess(action: (T) -> Unit) {
+    if (isSuccessful) {
+        action.invoke(body() as T)
+    }
+}
+
+fun <T> Response<T>.whenError(action: (Exception) -> Unit) {
+    if (!isSuccessful)
+        action.invoke(Exception(message()))
+}
+

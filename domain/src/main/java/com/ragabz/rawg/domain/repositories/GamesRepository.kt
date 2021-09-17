@@ -1,14 +1,18 @@
 package com.ragabz.rawg.domain.repositories
 
 import com.ragabz.core.deliverable.Result
-import com.ragabz.rawg.domain.base.Repository
+import com.ragabz.rawg.domain.base.IRepository
 import com.ragabz.rawg.models.Game
 import com.ragabz.rawg.models.RawgResult
+import com.ragabz.rawg.models.ScreenShot
+import com.ragabz.rawg.models.YoutubeVideo
 import kotlinx.coroutines.flow.Flow
 
 typealias GameListResponse = RawgResult<List<Game>>
+typealias ScreenShotsResponse = RawgResult<List<ScreenShot>>
+typealias VideosListResponse = RawgResult<List<YoutubeVideo>>
 
-interface GamesRepository : Repository {
+interface GamesRepository : IRepository {
 
     suspend fun getGamesList(
         page: Int? = null,
@@ -32,6 +36,9 @@ interface GamesRepository : Repository {
     ): Flow<Result<GameListResponse>>
 
     suspend fun getGameDetails(id: String): Flow<Result<Game>>
+
+    suspend fun getGamesScreenShotList(gameId: Int): Flow<Result<ScreenShotsResponse>>
+    suspend fun getGameVideos(gameId: Int): Flow<Result<VideosListResponse>>
 
 
 }

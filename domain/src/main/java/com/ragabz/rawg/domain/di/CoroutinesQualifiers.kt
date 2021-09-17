@@ -6,7 +6,6 @@ import javax.inject.Qualifier
 @Retention(AnnotationRetention.BINARY)
 internal annotation class DefaultDispatcher
 
-
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 internal annotation class IODispatcher
@@ -14,7 +13,6 @@ internal annotation class IODispatcher
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 internal annotation class MainDispatcher
-
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)

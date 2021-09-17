@@ -106,12 +106,10 @@ inline fun FragmentActivity.fragmentTransaction(body: FragmentTransaction.() -> 
 /**
  * Transforms static java function Snackbar.make() to an extension function on View.
  */
-fun Activity.showSnackbar(snackbarText: String, timeLength: Int) {
-    this.let {
-        Snackbar.make(
-            it.findViewById<View>(android.R.id.content),
-            snackbarText,
-            timeLength
-        ).show()
-    }
+fun View.createSnackBar(snackbarText: String, timeLength: Int): Snackbar {
+    return Snackbar.make(
+        this,
+        snackbarText,
+        timeLength
+    )
 }

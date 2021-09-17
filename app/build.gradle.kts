@@ -38,26 +38,55 @@ android {
             versionNameSuffix = DebugBuildType.versionNameSuffix
         }
     }
-
-    with(JavaVersion.VERSION_1_8) {
-        val javaVersion = this
-        compileOptions {
-            sourceCompatibility = javaVersion
-            targetCompatibility = javaVersion
-        }
-        kotlinOptions {
-            jvmTarget = javaVersion.toString()
-        }
-    }
     buildFeatures {
         viewBinding = true
         dataBinding = true
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
-    appDependencies()
+    testDependencies()
+    androidTestDependencies()
+    commonDependencies()
+
+    uiList.forEach { implementation(it) }
+    lifeCycleList.forEach { implementation(it) }
+
+
+
+    api(project(Modules.core))
+    api(project(Modules.data))
+    api(project(Modules.domain))
+
     implementation(Libs.timber)
-    implementation(Libs.whatIf)
+    implementation(Libs.Androidx.appStartup)
+    implementation(Libs.Androidx.legacySupport)
+    implementation(Libs.Retrofit.retrofit)
+    implementation(Libs.Retrofit.gsonConverter)
+    implementation(Libs.gson)
+    kapt(Libs.Retrofit.moshiCodeGen)
+    implementation(Libs.Retrofit.moshiKotlin)
+    implementation(Libs.Retrofit.retrofitMoshiConverter)
+    implementation(Libs.sandwich)
+
+    implementation(Libs.Okhttp.okhttpCore)
+    implementation(Libs.Okhttp.loggingInterceptor)
+    implementation(Libs.CommonInterceptors.ok2curl)
+    debugImplementation(Libs.CommonInterceptors.Chucker.debug)
+    implementation(Libs.Paging.runtime)
+    room.forEach{implementation(it)}
+    kapt(Libs.Room.compiler)
+    implementation(Libs.lottie)
+
 
 }

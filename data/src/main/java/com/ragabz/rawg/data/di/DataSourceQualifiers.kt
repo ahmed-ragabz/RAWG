@@ -1,4 +1,4 @@
-package com.ragabz.data.di
+package com.ragabz.rawg.data.di
 
 import javax.inject.Qualifier
 

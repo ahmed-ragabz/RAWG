@@ -14,5 +14,22 @@ sealed class Result<out T> {
             is Loading -> "Loading..."
         }
     }
+}
 
+inline fun <reified X> Result<X>.runIfSuccess(action: (X) -> Unit) {
+    if (this is Result.Success) {
+        action.invoke(this.data)
+    }
+}
+
+inline fun <reified X> Result<X>.runIfError(action: (Exception) -> Unit) {
+    if (this is Result.Error) {
+        action.invoke(this.error)
+    }
+}
+
+inline fun <reified X> Result<X>.runIfLoading(action: () -> Unit) {
+    if (this is Result.Loading) {
+        action.invoke()
+    }
 }

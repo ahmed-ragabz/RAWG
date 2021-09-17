@@ -2,22 +2,24 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Platform(
-    @Json(name = "games_count")
-    val gamesCount: Int,
-    @Json(name = "id")
-    val id: Int,
-    @Json(name = "image")
-    val image: String,
-    @Json(name = "image_background")
-    val imageBackground: String,
-    @Json(name = "name")
-    val name: String,
-    @Json(name = "slug")
-    val slug: String,
-    @Json(name = "year_end")
-    val yearEnd: Int,
-    @Json(name = "year_start")
-    val yearStart: Int
+    @field:Json(name = "games_count")
+    val gamesCount: Int?,
+    @field:Json(name = "id")
+    val id: Int?,
+    @field:Json(name = "image")
+    val image: String?,
+    @field:Json(name = "image_background")
+    val imageBackground: String?,
+    @field:Json(name = "name")
+    val name: String?,
+    @field:Json(name = "slug")
+    val slug: String?,
+    @field:Json(name = "year_end")
+    val yearEnd: Int?,
+    @field:Json(name = "year_start")
+    val yearStart: Int?
 )

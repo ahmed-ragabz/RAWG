@@ -2,14 +2,16 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Trailer(
-    @Json(name = "data")
+    @field:Json(name = "data")
     val trailerData: TrailerData,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "preview")
+    @field:Json(name = "preview")
     val preview: String
 )

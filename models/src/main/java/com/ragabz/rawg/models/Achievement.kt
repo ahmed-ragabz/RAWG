@@ -2,16 +2,18 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Achievement(
-    @Json(name = "description")
+    @field:Json(name = "description")
     val description: String,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int,
-    @Json(name = "image")
+    @field:Json(name = "image")
     val image: String,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "percent")
+    @field:Json(name = "percent")
     val percent: String
 )

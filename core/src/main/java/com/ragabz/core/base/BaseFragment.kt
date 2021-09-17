@@ -71,6 +71,7 @@ abstract class BaseVBFragment<VB : ViewBinding, VM : ViewModel> constructor(
         savedInstanceState: Bundle?
     ): View? {
         _binding = viewBindingInflater.invoke(layoutInflater, container, false)
+        onInitBinding()
         return binding.root
     }
 

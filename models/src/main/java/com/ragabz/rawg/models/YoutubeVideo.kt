@@ -2,32 +2,34 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class YoutubeVideo(
-    @Json(name = "channel_id")
+    @field:Json(name = "channel_id")
     val channelId: String,
-    @Json(name = "channel_title")
+    @field:Json(name = "channel_title")
     val channelTitle: String,
-    @Json(name = "comments_count")
+    @field:Json(name = "comments_count")
     val commentsCount: Int,
-    @Json(name = "created")
+    @field:Json(name = "created")
     val created: String,
-    @Json(name = "description")
+    @field:Json(name = "description")
     val description: String,
-    @Json(name = "dislike_count")
+    @field:Json(name = "dislike_count")
     val dislikeCount: Int,
-    @Json(name = "external_id")
+    @field:Json(name = "external_id")
     val externalId: String,
-    @Json(name = "favorite_count")
+    @field:Json(name = "favorite_count")
     val favoriteCount: Int,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int,
-    @Json(name = "like_count")
+    @field:Json(name = "like_count")
     val likeCount: Int,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "thumbnails")
-    val thumbnails: Thumbnails,
-    @Json(name = "view_count")
+    @field:Json(name = "thumbnails")
+    val thumbnails: Thumbnails?,
+    @field:Json(name = "view_count")
     val viewCount: Int
 )

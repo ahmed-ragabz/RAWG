@@ -2,10 +2,12 @@ package com.ragabz.rawg.models
 
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Requirements(
-    @Json(name = "minimum")
+    @field:Json(name = "minimum")
     val minimum: String,
-    @Json(name = "recommended")
+    @field:Json(name = "recommended")
     val recommended: String
 )

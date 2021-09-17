@@ -4,8 +4,11 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
-open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+/* ViewHolder used with databinding */
+open class DataBindingHolder(view: View) : RecyclerView.ViewHolder(view) {
     var binding: ViewDataBinding? = null
 
     init {
@@ -13,4 +16,6 @@ open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 }
 
-open class BaseHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+
+/* ViewHolder used with ViewBinding */
+open class ViewBindingHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)

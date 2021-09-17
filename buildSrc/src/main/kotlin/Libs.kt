@@ -13,6 +13,7 @@ object Libs {
         const val appCompat = "androidx.appcompat:appcompat:1.4.0-alpha03"
         const val legacySupport = "androidx.legacy:legacy-support-v4:1.0.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+        const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val swipeRefreshLayout =
             "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
@@ -91,19 +92,23 @@ object Libs {
             // optional - ReactiveStreams support for LiveData
             const val reactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$version"
 
-            // region paging
-            object Paging {
-                private const val version = "2.1.2"
-                const val runtime =
-                    "androidx.paging:paging-runtime:$version"
-                const val rxJava2 =
-                    "androidx.paging:paging-rxjava2:$version"
-            }
-            //endregion
+
         }
         // endregion
     }
     // endregion
+
+    // region paging
+    object Paging {
+        private const val version = "3.0.1"
+        const val runtime =
+            "androidx.paging:paging-runtime:$version"
+        const val rxJava2 =
+            "androidx.paging:paging-rxjava2:$version"
+        const val rxJava3 =
+            "androidx.paging:paging-rxjava3:$version"
+    }
+    //endregion
 
     //region Okhttp
     object Okhttp {
@@ -131,8 +136,8 @@ object Libs {
         const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-        const val moshi = "com.squareup.moshi:moshi:$moshiVersion"
-        const val moshiCompiler = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+//        const val moshi = "com.squareup.moshi:moshi:$moshiVersion"
+        const val moshiCodeGen = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
         const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$moshiVersion"
         const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     }
@@ -149,7 +154,7 @@ object Libs {
     // region Coroutines
     object Coroutines {
         // coroutines
-        private const val version = "1.5.2"
+        private const val version = "1.4.2"
 
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -162,6 +167,9 @@ object Libs {
     object Navigation {
         const val version = "2.4.0-alpha08"
 
+        // fragment ktx
+        const val runtimeKtx =
+            "androidx.navigation:navigation-runtime-ktx:$version"
         // fragment ktx
         const val fragmentKtx =
             "androidx.navigation:navigation-fragment-ktx:$version"
@@ -258,5 +266,6 @@ object Libs {
     const val whatIf = "com.github.skydoves:whatif:1.1.0"
 
     const val sandwich = "com.github.skydoves:sandwich:1.2.1"
+    const val loadMoreWrapper = "com.github.nukc:LoadMoreWrapper:v1.9.1"
 }
 

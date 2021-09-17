@@ -12,7 +12,8 @@ dependencies {
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Kotlin.reflection)
 
-    implementation(Libs.Retrofit.moshi)
     implementation(Libs.Retrofit.moshiKotlin)
-    kapt(Libs.Retrofit.moshiCompiler)
+    kapt(Libs.Retrofit.moshiCodeGen)
+
+    implementation(Libs.gson)
 }
