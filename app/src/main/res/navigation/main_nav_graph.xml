@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_games">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.ragabz.rawg.features.main.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_games"
+        android:name="com.ragabz.rawg.features.main.games.GamesFragment"
+        android:label="@string/title_games"
+        tools:layout="@layout/fragment_games">
+        <action
+            android:id="@+id/action_navigation_games_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_browse"
+        android:name="com.ragabz.rawg.features.main.browse.BrowseFragment"
+        android:label="@string/title_browse"
+        tools:layout="@layout/fragment_browse" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.ragabz.rawg.features.main.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.ragabz.rawg.features.main.gamedetails.GameDetailsFragment"
+        android:label="@string/title_details"
+        tools:layout="@layout/fragment_game_details">
+        <argument
+            android:name="game_id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+</navigation>
