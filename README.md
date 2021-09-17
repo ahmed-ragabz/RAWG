@@ -32,9 +32,4 @@ Feel free to post problems with the app as Github Issues
 Features ideas should be posted as new Github Discussion
 
 ## Contact
-
-Twitter: https://twitter.com/AppShowly
-
-Landing Page: www.showlyapp.com
-
-Email: showlyapp@gmail.com
+Email: ahmedragab.se@gmail.com
